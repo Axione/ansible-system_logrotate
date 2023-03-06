@@ -1,0 +1,18 @@
+---
+logrotate_conf_path: "/etc/logrotate.d/"
+logrotate_default_conf: ""
+#  # {{ ansible_managed }}
+#  weekly
+#  rotate 4
+#  compress
+#  create 600 root root
+#  include /etc/logrotate.d
+logrotate_apps_conf: []
+#  - name: wtmp
+#    path: "/var/log/wtmp"
+#    options:
+#      - monthly
+#      - rotate 1
+#      - missingok
+#      - minsize 1M
+#      - create 0600 root utmp
