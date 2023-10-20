@@ -5,9 +5,11 @@
     state: present
 
 - name: "Change default config"
-  ansible.builtin.copy:
+  ansible.builtin.template:
+    src: logrotate.conf.j2
     dest: "/etc/logrotate.conf"
-    content: "{{ logrotate_default_conf }}"
+    owner: root
+    group: root
     mode: '0644'
   when:
     - logrotate_default_conf is defined
@@ -19,7 +21,7 @@
     dest: "{{ logrotate_conf_path }}{{ item.name }}"
     owner: root
     group: root
-    mode: 0640
+    mode: '0640'
   with_items: "{{ logrotate_apps_conf }}"
   when:
     - logrotate_apps_conf is defined

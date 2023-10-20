@@ -1,18 +1,41 @@
 ---
 logrotate_conf_path: "/etc/logrotate.d/"
 logrotate_default_conf: ""
-#  # {{ ansible_managed }}
 #  weekly
 #  rotate 4
 #  compress
 #  create 600 root root
 #  include /etc/logrotate.d
 logrotate_apps_conf: []
-#  - name: wtmp
-#    path: "/var/log/wtmp"
+#  - name: test1
+#    path: /var/log/test1
 #    options:
 #      - monthly
 #      - rotate 1
 #      - missingok
-#      - minsize 1M
+#      - minsize 1m
+#  - name: test2
+#    path: |-
+#      /var/log/titi
+#      /var/log/toto
+#    options:
+#      - monthly
+#      - rotate 1
+#      - missingok
+#      - minsize 1m
+#      - create 0600 root root
+#    postrotate: dfsdfsdfsdf sdfsdf
+#  - name: test3
+#    path: |-
+#      /var/log/isdfsdftiti
+#      /var/log/wtotosdfsdf
+#    options:
+#      - monthly
+#      - rotate 1
+#      - missingok
+#      - minsize 1m
 #      - create 0600 root utmp
+#    postrotate: |-
+#      dfsdfsdfsdf sdfsdf
+#      dfsdfsdfsdf sdfsdf
+#      dfsdfsdfsdf sdfsdf

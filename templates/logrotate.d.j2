@@ -1,23 +1,15 @@
 {{ ansible_managed | comment }}
 
-{% if 'path' in item %}
-"{{ item.path }}"
-{% elif 'paths' in item %}
-{% for path in item.paths %}
-"{{ path }}"
-{% endfor %}
-{% endif %}
+{{ item.path }}
 {
   {% if item.options is defined -%}
   {% for option in item.options -%}
   {{ option }}
   {% endfor -%}
   {% endif %}
-  {%- if item.scripts is defined -%}
-  {%- for name, script in item.scripts.items() -%}
-  {{ name }}
-    {{ script }}
+  {%- if item.postrotate is defined -%}
+  postrotate
+{{ item.postrotate | indent(8,true) }}
   endscript
-  {% endfor -%}
   {% endif -%}
 }
