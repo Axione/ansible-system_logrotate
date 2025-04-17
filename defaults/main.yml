@@ -1,4 +1,5 @@
 ---
+logrotate_execute: false
 logrotate_conf_path: "/etc/logrotate.d/"
 logrotate_default_conf: ""
 #  weekly

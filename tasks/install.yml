@@ -14,7 +14,7 @@
     dest: "/etc/logrotate.conf"
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   when:
     - logrotate_default_conf is defined
     - logrotate_default_conf | length > 0
@@ -25,8 +25,13 @@
     dest: "{{ logrotate_conf_path }}{{ item.name }}"
     owner: root
     group: root
-    mode: '0640'
+    mode: "0640"
   with_items: "{{ logrotate_apps_conf }}"
   when:
     - logrotate_apps_conf is defined
     - logrotate_apps_conf | length > 0
+
+- name: "Execute logrotate"
+  ansible.builtin.command: logrotate -vf /etc/logrotate.conf
+  when: logrotate_execute
+  changed_when: false
