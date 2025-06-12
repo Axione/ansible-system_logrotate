@@ -31,6 +31,14 @@
     - logrotate_apps_conf is defined
     - logrotate_apps_conf | length > 0
 
+- name: Ensure /var/log has correct permissions and ownership
+  ansible.builtin.file:
+    path: /var/log
+    owner: root
+    group: root
+    mode: "0755"
+    state: directory
+
 - name: "Execute logrotate"
   ansible.builtin.command: logrotate -vf /etc/logrotate.conf
   when: logrotate_execute
